@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+#wrap
+{
+	width : 1200px;
+	margin : 0 auto;
+}
+
+header
+{
+	height : 100px;
+}
+
+.main-menu
+{
+	height : 40px;
+}
+
+.contents
+{
+	height : 500px;
+}
+
+.contents > .contents-detail
+{
+	height : 150px;
+}
+
+.contents > .contents-detail > .artist-photo
+{
+	width : 200px;
+}
+
+.contents > .contents-detail > .artist-info
+{
+	width : 1000px;
+}
+
+.artist-info > .info1
+{
+	height : 50px;
+}
+
+.artist-info > .info2
+{
+	height : 50px;
+}
+
+.artist-info > .info3
+{
+	height : 50px;
+}
+
+.contents > .songs
+{
+	height : 70px;	
+}
+
+.contents > .songs-detail
+{
+	height : 280px;	
+}
+
+footer
+{
+	height:50px;
+	position : relative;
+  	transform : translateY(150%);
+}

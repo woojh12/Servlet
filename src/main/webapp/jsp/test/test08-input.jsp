@@ -10,21 +10,21 @@
 </head>
 <body>
 	<%
-		List<Map<String, Object>> list = new ArrayList<>();
-		Map<String, Object> map = new HashMap<String, Object>() {
-	    { 
-	        put("id", 1000);
-	        put("title", "아몬드"); 
-	        put("author", "손원평"); 
-	        put("publisher", "창비");
-	        put("image", "http://image.kyobobook.co.kr/images/book/xlarge/267/x9788936434267.jpg");
-	    	} 
-			 };
-			 list.add(map);
-	
-		map = new HashMap<String, Object>() {
-	    	{ 
-	        	put("id", 1001);
+	 	List<Map<String, Object>> list = new ArrayList<>();
+    	Map<String, Object> map = new HashMap<String, Object>() {
+        { 
+            put("id", 1000);
+            put("title", "아몬드"); 
+            put("author", "손원평"); 
+            put("publisher", "창비");
+            put("image", "http://image.kyobobook.co.kr/images/book/xlarge/267/x9788936434267.jpg");
+        	} 
+   		 };
+   		 list.add(map);
+
+    	map = new HashMap<String, Object>() {
+        	{ 
+            	put("id", 1001);
 	            put("title", "사피엔스"); 
 	            put("author", "유발 하라리"); 
 	            put("publisher", "김영사");
@@ -54,16 +54,43 @@
 	        } 
 	    };
 	    list.add(map);
-	    
-	    // 하나의 책을 지정할 수 있는 데이터를 파라미터로 전달 받고, 이 값으로 하나의 책만 표시하는 조건
-	    
+	    	   	
+	   	String titles[] = new String[4];
+	   	int num = 0;
+	   	
+	    for(Map<String, Object> book:list)
+	    {
+	    	String bookTitle = (String)book.get("title");
+	    	titles[num] = bookTitle;
+	    	num++;
+	    }
+	    num = 0;
 	%>
 	
-	<div class="container">
-		
-		<% for(Map<String, Object> book:list) %>
-	</div>
+	<form method="post" action="/jsp/test/test08.jsp">
+		<div class="container">
+			<h2 class="text-center">책 목록</h2>
+			<table class="table table-center">
+				<thead>
+					<tr>
+						<th class="text-center">id</th>
+						<th class="text-center">표지</th>
+						<th class="text-center">제목</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<% for(Map<String, Object> book:list){ %>
+						<td><%= book.get("id") %></td>
+						<td><img src=<%= book.get("image") %> height="100px"></td>
+						<td><a href="/jsp/test/test08.jsp?id=<%= book.get("id") %>" class="display-4"><%= book.get("title") %></a></td>
+					</tr>
+					<%} %>
+				</tbody>
+			</table>
+		</div>	
+	</form>
 	
-	
+	<%= titles[0] %>
 </body>
 </html>
