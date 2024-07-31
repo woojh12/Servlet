@@ -1,4 +1,4 @@
-package com.marondal.servlet.common;
+package common;
 
 import java.io.IOException;
 

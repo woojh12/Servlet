@@ -79,9 +79,14 @@
 	    musicInfo.put("lyricist", "아이유");
 	    musicList.add(musicInfo);
 	    
-	    int targetId = Integer.parseInt(request.getParameter("id"));
+	    String idString = request.getParameter("id");
+	    int targetId = 0;   
+	    if(idString != null)
+	    {
+	    	targetId = Integer.parseInt(idString);
+	    }
 	    
-	   	String searchTitle = request.getParameter("title");
+	   	String title = request.getParameter("title");
 	%>
 	<div id="wrap" class="">
 		<header class="d-flex align-items-center">
@@ -115,7 +120,8 @@
 					<div class="info1 mt-3">
 						<% for(Map<String, Object> list:musicList){ %>
 						<% int tempId = (Integer)list.get("id"); %>
-						<% if(targetId == tempId){ %>
+						<% if((tempId == targetId && targetId != 0) || (title != null && title.equals(list.get("title")))){ %>
+						
 							<h2><%= list.get("title") %></h2>
 						<%} %>
 						<%} %>
@@ -154,6 +160,6 @@
 			<div>copyright</div>
 		</footer>
 	</div>
-	<%=searchTitle  %>
+	
 </body>
 </html>
