@@ -1,9 +1,10 @@
-package database;
+package database.exam;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,9 @@ public class Ex02Controller extends HttpServlet{
 		MysqlService mysqlService = MysqlService.getInstance();
 		
 		mysqlService.connect();
+		
+		// ResultSet으로 처리하는 경우사용 ---> 24.08.01 MysqlService Select함수 리턴 타입 변경됨.
+		/*
 		ResultSet resultset = mysqlService.select("SELECT * FROM `used_goods`;");
 		
 		try {
@@ -48,5 +52,19 @@ public class Ex02Controller extends HttpServlet{
 		int count = mysqlService.update(query);
 		
 		out.println("삽입 결과  : " + count);
+		*/
+		
+		List<Map<String, Object>> resultList = mysqlService.select("SELECT * FROM `used_goods`;");
+		
+		for(Map<String, Object> list:resultList)
+		{
+			int sellerId = (Integer)list.get("sellerId");
+			String title = (String)list.get("title");
+			int price = (Integer)list.get("price");
+			String description = (String)list.get("description");
+			
+			out.println("sellerId : " + sellerId + ", title : " + title + ", price : " + price
+					+ ", description : " + description);
+		}
 	}
 }
