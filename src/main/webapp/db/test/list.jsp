@@ -16,12 +16,12 @@
 		
 		List<Map<String, Object>> resultList = mysqlService.select("SELECT * FROM `URLLIST` ORDER BY `id` DESC");
 	%>
-
 	<table class="table table-center">
 		<thead>
 			<tr>
 				<th>사이트</th>
 				<th>사이트 주소</th>
+				<th>삭제</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,6 +29,7 @@
 			<tr>
 				<td><%= resultMap.get("name") %></td>
 				<td><a href="<%= resultMap.get("url") %>"><%= resultMap.get("url") %></a></td>
+				<td><a href="/db/test/delete?delete_url=<%= resultMap.get("url") %>">삭제</a></td>
 			</tr>
 		<%} %>
 		</tbody>
